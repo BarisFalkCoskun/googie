@@ -1,14 +1,14 @@
 <script>
   const highlights = [
     {
-      title: 'Jet-Stream Breakfast',
-      copy: 'All-day eggs, citrus syrup, and a cloud-soft croissant stack served with orbit berries.',
-      note: 'All day'
+      title: 'Jet-Stream Launch Pad',
+      copy: 'A vaulted arrival canopy with kinetic light pylons and a sweeping, runway-ready deck.',
+      note: 'Open daily'
     },
     {
-      title: 'Neon Soda Bar',
-      copy: 'House-made spritzers poured through glowing taps with chili-lime rims.',
-      note: '18 flavors'
+      title: 'Neon Signal Bar',
+      copy: 'Interactive consoles that paint the room with analog dials, color wheels, and pulse meters.',
+      note: 'Hands-on'
     },
     {
       title: 'Signal Studio',
@@ -17,26 +17,26 @@
     }
   ];
 
-  const menuItems = [
+  const programs = [
     {
-      name: 'Orbit Burger',
-      desc: 'Double patty, comet sauce, pickled star onions, sesame flare bun.',
+      name: 'Orbit Capsule Exhibit',
+      desc: 'Immersive kinetic sculpture pods with projected mid-century futures.',
+      price: '$14'
+    },
+    {
+      name: 'Skyline Model Lab',
+      desc: 'Hands-on model kits, laser-cut parts, and pinstripe paint bays.',
       price: '$12'
     },
     {
-      name: 'Atomic Club',
-      desc: 'Smoked turkey, neon slaw, rocket mustard, toasted rye.',
-      price: '$11'
-    },
-    {
-      name: 'Sunset Shake',
-      desc: 'Mango, vanilla, and burnt sugar foam with crunchy comet dust.',
-      price: '$8'
-    },
-    {
-      name: 'Stardust Salad',
-      desc: 'Citrus greens, candied pecans, eclipse cheese, hibiscus vinaigrette.',
+      name: 'Sunset Projection Room',
+      desc: 'Short films on Googie architects, neon signage, and concept cars.',
       price: '$10'
+    },
+    {
+      name: 'Signal Workshop',
+      desc: 'Weekend sessions on type, signage, and retro-future illustration.',
+      price: '$18'
     }
   ];
 
@@ -78,29 +78,29 @@
   <header class="site-header">
     <div class="logo-burst" aria-label="Coskun">
       <span class="logo-word">Coskun</span>
-      <span class="logo-tag">Rocket-Glide Cafe</span>
+      <span class="logo-tag">Googie Design House</span>
     </div>
     <nav class="nav">
       <a href="#story">Story</a>
-      <a href="#menu">Menu</a>
+      <a href="#programs">Programs</a>
       <a href="#events">Events</a>
       <a href="#visit">Visit</a>
-      <button class="cta small">Order Ahead</button>
+      <button class="cta small">Plan Visit</button>
     </nav>
   </header>
 
   <main>
     <section class="hero" id="story">
       <div class="hero-copy">
-        <p class="kicker">Googie drive-in + design lab</p>
+        <p class="kicker">Googie drive-in gallery + design lab</p>
         <h1>Coskun is where the chrome future met the open road.</h1>
         <p class="lead">
-          Bold flavors, boomerang architecture, and a soundtrack of neon nights. Pull into a booth
-          under the starburst canopy and taste the retro-future.
+          Bold forms, boomerang architecture, and a soundtrack of neon nights. Pull into a bay
+          under the starburst canopy and explore the retro-future.
         </p>
         <div class="hero-actions">
-          <button class="cta primary">Reserve a Booth</button>
-          <button class="cta ghost">Tonight's Signal</button>
+          <button class="cta primary">Reserve a Bay</button>
+          <button class="cta ghost">Tonight's Program</button>
         </div>
         <div class="hero-metrics">
           <div>
@@ -113,7 +113,7 @@
           </div>
           <div>
             <span class="metric-number">24</span>
-            <span class="metric-label">Retro Brews</span>
+            <span class="metric-label">Retro Builds</span>
           </div>
         </div>
       </div>
@@ -122,8 +122,8 @@
         <div class="boomerang alt"></div>
         <div class="starburst">Open Late</div>
         <div class="orbit-card">
-          <p class="orbit-title">Skyline Specials</p>
-          <p class="orbit-copy">3-course rocket supper + glowing dessert</p>
+          <p class="orbit-title">Skyline Pass</p>
+          <p class="orbit-copy">3-exhibit loop + glow kit</p>
           <span class="orbit-price">$28</span>
         </div>
         <div class="signal-lines"></div>
@@ -146,14 +146,14 @@
       </div>
     </section>
 
-    <section class="menu" id="menu">
+    <section class="programs" id="programs">
       <div class="section-head">
-        <h2>Coskun menu board</h2>
-        <p>Hand-lettered classics with a Googie twist, plated for the open highway.</p>
+        <h2>Coskun program board</h2>
+        <p>Immersive exhibits and hands-on sessions, tuned for the open highway.</p>
       </div>
-      <div class="menu-board">
-        {#each menuItems as item}
-          <div class="menu-item">
+      <div class="program-board">
+        {#each programs as item}
+          <div class="program-item">
             <div>
               <h3>{item.name}</h3>
               <p>{item.desc}</p>
@@ -167,12 +167,12 @@
     <section class="marquee" aria-label="Coskun vibe">
       <div class="marquee-track">
         <span>Neon nights</span>
-        <span>Chrome cocktails</span>
+        <span>Chrome concepts</span>
         <span>Rocket rhythms</span>
-        <span>Jet-lagged desserts</span>
+        <span>Jet-lagged sketches</span>
         <span>Drive-in glow</span>
         <span>Neon nights</span>
-        <span>Chrome cocktails</span>
+        <span>Chrome concepts</span>
         <span>Rocket rhythms</span>
       </div>
     </section>
@@ -214,7 +214,7 @@
     <section class="newsletter">
       <div>
         <h2>Coskun Dispatch</h2>
-        <p>Get the weekly neon list: special menus, guest DJs, and retro ride-ins.</p>
+        <p>Get the weekly neon list: special programs, guest DJs, and retro ride-ins.</p>
       </div>
       <form class="newsletter-form" on:submit|preventDefault={noop}>
         <input type="email" name="email" placeholder="you@coskun.com" aria-label="Email address" required />
@@ -226,7 +226,7 @@
   <footer class="site-footer">
     <p>Coskun © 1961 - 2024. Built on neon, nostalgia, and new ideas.</p>
     <div class="footer-links">
-      <a href="#menu">Menu</a>
+      <a href="#programs">Programs</a>
       <a href="#events">Events</a>
       <a href="#visit">Visit</a>
       <a href="#highlights">Highlights</a>

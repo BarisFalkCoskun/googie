@@ -438,13 +438,13 @@ section {
   font-size: 0.65rem;
 }
 
-.menu-board {
+.program-board {
   margin-top: 2rem;
   display: grid;
   gap: 1.2rem;
 }
 
-.menu-item {
+.program-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -457,7 +457,7 @@ section {
   box-shadow: 0 8px 0 var(--ink);
 }
 
-.menu-item h3 {
+.program-item h3 {
   margin: 0 0 0.4rem;
 }
 
@@ -645,7 +645,7 @@ section {
     order: -1;
   }
 
-  .menu-item {
+  .program-item {
     flex-direction: column;
     align-items: flex-start;
   }
