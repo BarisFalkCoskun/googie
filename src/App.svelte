@@ -1,74 +1,120 @@
 <script>
-  const highlights = [
+  const principles = [
     {
-      title: 'Jet-Stream Launch Pad',
-      copy: 'A vaulted arrival canopy with kinetic light pylons and a sweeping, runway-ready deck.',
-      note: 'Open daily'
+      title: 'Borrow the real world',
+      copy: 'Signs, tickets, terrazzo floors, and road maps are fair game online.',
+      tag: 'Material'
     },
     {
-      title: 'Neon Signal Bar',
-      copy: 'Interactive consoles that paint the room with analog dials, color wheels, and pulse meters.',
-      note: 'Hands-on'
+      title: 'Geometry with optimism',
+      copy: 'Boomerangs, starbursts, and angled roofs create motion without noise.',
+      tag: 'Form'
     },
     {
-      title: 'Signal Studio',
-      copy: 'A listening lounge with vinyl capsules, jukebox benches, and moonlit acoustics.',
-      note: 'Live sets'
+      title: 'Color as navigation',
+      copy: 'Neon and sunlit palettes guide attention like street lighting.',
+      tag: 'Guidance'
+    },
+    {
+      title: 'Motion as a cue',
+      copy: 'Sweeps, pulses, and marquee rhythms show the next step.',
+      tag: 'Motion'
     }
   ];
 
-  const programs = [
+  const projects = [
     {
-      name: 'Orbit Capsule Exhibit',
-      desc: 'Immersive kinetic sculpture pods with projected mid-century futures.',
-      price: '$14'
+      name: 'Signal Atlas',
+      role: 'Product design',
+      desc: 'A map of night routes that turns city data into glowing wayfinding.',
+      tags: ['Web', 'Mapping']
     },
     {
-      name: 'Skyline Model Lab',
-      desc: 'Hands-on model kits, laser-cut parts, and pinstripe paint bays.',
-      price: '$12'
+      name: 'Orbit Planner',
+      role: 'Interaction design',
+      desc: 'A scheduling tool for studios that treats time like a runway.',
+      tags: ['Systems', 'SaaS']
     },
     {
-      name: 'Sunset Projection Room',
-      desc: 'Short films on Googie architects, neon signage, and concept cars.',
-      price: '$10'
+      name: 'Neon Specimen',
+      role: 'Visual system',
+      desc: 'A type exploration that mixes signage, tickets, and hand-lettering.',
+      tags: ['Identity', 'Type']
     },
     {
-      name: 'Signal Workshop',
-      desc: 'Weekend sessions on type, signage, and retro-future illustration.',
-      price: '$18'
+      name: 'Drive-In Toolkit',
+      role: 'Creative code',
+      desc: 'Reusable motion patterns inspired by roadside signage and travel boards.',
+      tags: ['Motion', 'UI']
     }
   ];
 
-  const events = [
+  const experiments = [
     {
-      title: 'Starliner Swing',
-      time: 'Friday 8:00 PM',
-      detail: 'Big-band sets with a chrome-lit dance floor.'
+      title: 'Starburst Generator',
+      format: 'SVG tool',
+      desc: 'Builds retro bursts with adjustable rays and glow layers.'
     },
     {
-      title: 'Midnight Motors',
-      time: 'Saturday 10:30 PM',
-      detail: 'Retro auto cinema with popcorn flight service.'
+      title: 'Ticket Stub UI',
+      format: 'Component study',
+      desc: 'Explores clipped corners, embossing, and ink-stamp textures.'
     },
     {
-      title: 'Coskun Radio',
-      time: 'Sunday 6:00 PM',
-      detail: 'Live broadcast from the signal booth.'
+      title: 'Runway Lightline',
+      format: 'Motion loop',
+      desc: 'A looping guide rail animation for navigation cues.'
     }
   ];
 
-  const locations = [
+  const studioSteps = [
     {
-      name: 'Coskun Retro Plaza',
-      address: '88 Skyline Spur, Crescent Bay, CA',
-      hours: 'Daily 7 AM - 1 AM'
+      title: 'Collect the cues',
+      desc: 'Photograph signage, watch traffic flow, archive ephemera.'
     },
     {
-      name: 'Coskun Airfield',
-      address: '212 Jetstream Ave, Palm Mesa, AZ',
-      hours: 'Thu-Sun 8 AM - Late'
+      title: 'Translate the forms',
+      desc: 'Turn real-world geometry into scalable UI structures.'
+    },
+    {
+      title: 'Tune the signal',
+      desc: 'Use motion and color to guide without overwhelming.'
     }
+  ];
+
+  const timeline = [
+    {
+      year: '2018',
+      title: 'Started building Googie-inspired UI studies.',
+      detail: 'Collected signage and roadside forms across the west coast.'
+    },
+    {
+      year: '2020',
+      title: 'Launched visual systems for two travel startups.',
+      detail: 'Focused on navigation-heavy interfaces and wayfinding.'
+    },
+    {
+      year: '2022',
+      title: 'Opened a small studio for motion and interaction.',
+      detail: 'Built toolkits for ticketing, signage, and glow effects.'
+    },
+    {
+      year: '2024',
+      title: 'Exploring multi-style web experiences for personal brands.',
+      detail: 'Combining architecture, print, and motion into websites.'
+    }
+  ];
+
+  const nowItems = [
+    'Designing a web identity for a community airfield.',
+    'Prototyping a motion system based on runways and checklists.',
+    'Open for select collaborations in 2025.'
+  ];
+
+  const links = [
+    { label: 'Email', value: 'hello@coskun.studio' },
+    { label: 'Portfolio', value: 'coskun.studio' },
+    { label: 'Github', value: 'github.com/coskun' }
   ];
 
   const noop = () => {};
@@ -76,160 +122,236 @@
 
 <div class="page">
   <header class="site-header">
-    <div class="logo-burst" aria-label="Coskun">
-      <span class="logo-word">Coskun</span>
-      <span class="logo-tag">Googie Design House</span>
+    <div class="logo" aria-label="Coskun">
+      <span class="logo-main">Coskun</span>
+      <span class="logo-sub">Googie Personal Studio</span>
+      <span class="logo-stamp">Est. 1961</span>
     </div>
     <nav class="nav">
-      <a href="#story">Story</a>
-      <a href="#programs">Programs</a>
-      <a href="#events">Events</a>
-      <a href="#visit">Visit</a>
-      <button class="cta small">Plan Visit</button>
+      <a href="#work">Work</a>
+      <a href="#experiments">Experiments</a>
+      <a href="#studio">Studio</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#now">Now</a>
+      <a href="#contact">Contact</a>
     </nav>
+    <a class="cta small" href="#contact">Signal Me</a>
   </header>
 
   <main>
-    <section class="hero" id="story">
+    <section class="hero" id="home">
       <div class="hero-copy">
-        <p class="kicker">Googie drive-in gallery + design lab</p>
-        <h1>Coskun is where the chrome future met the open road.</h1>
+        <p class="eyebrow">Designer, builder, and collector of real-world cues</p>
+        <h1>Coskun builds playful interfaces inspired by the streets, not templates.</h1>
         <p class="lead">
-          Bold forms, boomerang architecture, and a soundtrack of neon nights. Pull into a bay
-          under the starburst canopy and explore the retro-future.
+          The internet does not have to look one way. This personal studio pulls from Googie
+          signage, travel ephemera, and bold geometry to prove websites can be physical, bright,
+          and still modern.
         </p>
         <div class="hero-actions">
-          <button class="cta primary">Reserve a Bay</button>
-          <button class="cta ghost">Tonight's Program</button>
+          <a class="cta primary" href="#work">See the Work</a>
+          <a class="cta ghost" href="#contact">Say Hello</a>
         </div>
-        <div class="hero-metrics">
+        <div class="hero-stats">
           <div>
-            <span class="metric-number">12</span>
-            <span class="metric-label">Neon Bays</span>
+            <span class="stat-number">15+</span>
+            <span class="stat-label">Visual Systems</span>
           </div>
           <div>
-            <span class="metric-number">60s</span>
-            <span class="metric-label">Vinyl Capsules</span>
+            <span class="stat-number">8</span>
+            <span class="stat-label">Motion Toolkits</span>
           </div>
           <div>
-            <span class="metric-number">24</span>
-            <span class="metric-label">Retro Builds</span>
+            <span class="stat-number">24</span>
+            <span class="stat-label">City Drives</span>
           </div>
         </div>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="boomerang"></div>
-        <div class="boomerang alt"></div>
-        <div class="starburst">Open Late</div>
-        <div class="orbit-card">
-          <p class="orbit-title">Skyline Pass</p>
-          <p class="orbit-copy">3-exhibit loop + glow kit</p>
-          <span class="orbit-price">$28</span>
+      <div class="hero-collage" aria-hidden="true">
+        <svg class="collage" viewBox="0 0 520 520" role="presentation" aria-hidden="true">
+          <defs>
+            <linearGradient id="boomA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#39d0c3" />
+              <stop offset="100%" stop-color="#c6f2ff" />
+            </linearGradient>
+            <linearGradient id="boomB" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff7b57" />
+              <stop offset="100%" stop-color="#ffc857" />
+            </linearGradient>
+          </defs>
+          <path class="boom" d="M70 300 C150 190 330 170 440 220 C470 238 476 265 458 285 C420 335 260 350 160 330 C110 320 80 310 70 300 Z" />
+          <path class="boom alt" d="M90 360 C160 290 300 280 400 310 C430 320 430 350 400 370 C330 410 210 410 120 390 C90 380 80 370 90 360 Z" />
+          <polygon class="roof" points="140 230 340 220 300 170 110 180" />
+          <rect class="tower" x="350" y="90" width="60" height="180" rx="16" />
+          <rect class="tower-panel" x="332" y="70" width="96" height="52" rx="14" />
+          <polygon class="starburst" points="260,60 272,90 302,78 290,106 320,110 290,124 302,152 272,140 260,170 248,140 218,152 230,124 200,110 230,106 218,78 248,90" />
+          <path class="signal" d="M90 120 C200 40 320 40 430 110" />
+          <path class="signal thin" d="M100 150 C210 90 310 90 420 140" />
+          <rect class="runway" x="180" y="250" width="160" height="200" rx="20" />
+          <line class="runway-line" x1="260" y1="270" x2="260" y2="430" />
+          <line class="runway-line short" x1="240" y1="290" x2="240" y2="360" />
+          <circle class="beacon" cx="130" cy="420" r="20" />
+          <circle class="beacon glow" cx="130" cy="420" r="36" />
+        </svg>
+        <div class="hero-sticker">Signal: Online</div>
+        <div class="hero-ticket">
+          <p class="ticket-title">Coskun Pass</p>
+          <p class="ticket-code">GOOG-1961</p>
+          <p class="ticket-copy">UI systems + motion studies</p>
+          <span class="ticket-price">Open 2025</span>
         </div>
-        <div class="signal-lines"></div>
       </div>
     </section>
 
-    <section class="highlights" id="highlights">
+    <section class="manifesto" id="manifesto">
       <div class="section-head">
-        <h2>Attractions in orbit</h2>
-        <p>Vintage glamour meets playful geometry, all tuned for a cosmic pit stop.</p>
+        <h2>Why Googie, why now</h2>
+        <p>A reminder that the web can feel like a place, not just a layout.</p>
       </div>
-      <div class="cards">
-        {#each highlights as highlight, index}
-          <article class="card" style={`--delay: ${index * 140}ms`}>
-            <h3>{highlight.title}</h3>
-            <p>{highlight.copy}</p>
-            <span class="chip">{highlight.note}</span>
+      <div class="manifesto-grid">
+        {#each principles as item, index}
+          <article class="manifesto-card" style={`--delay: ${index * 120}ms`}>
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+            <span class="tag">{item.tag}</span>
           </article>
         {/each}
       </div>
     </section>
 
-    <section class="programs" id="programs">
-      <div class="section-head">
-        <h2>Coskun program board</h2>
-        <p>Immersive exhibits and hands-on sessions, tuned for the open highway.</p>
+    <section class="signal-strip" aria-label="Coskun signal">
+      <div class="strip-track">
+        <span>Websites can be physical</span>
+        <span>Neon is a navigation tool</span>
+        <span>Geometry beats grids</span>
+        <span>Design from the street</span>
+        <span>Motion shows the way</span>
+        <span>Websites can be physical</span>
       </div>
-      <div class="program-board">
-        {#each programs as item}
-          <div class="program-item">
-            <div>
-              <h3>{item.name}</h3>
-              <p>{item.desc}</p>
+    </section>
+
+    <section class="work" id="work">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <p>Product and identity systems that borrow from signage, travel, and architecture.</p>
+      </div>
+      <div class="work-grid">
+        {#each projects as project, index}
+          <article class="work-card" style={`--delay: ${index * 110}ms`}>
+            <div class="work-header">
+              <h3>{project.name}</h3>
+              <span class="work-role">{project.role}</span>
             </div>
-            <span class="price">{item.price}</span>
-          </div>
+            <p>{project.desc}</p>
+            <div class="work-tags">
+              {#each project.tags as tag}
+                <span>{tag}</span>
+              {/each}
+            </div>
+          </article>
         {/each}
       </div>
     </section>
 
-    <section class="marquee" aria-label="Coskun vibe">
-      <div class="marquee-track">
-        <span>Neon nights</span>
-        <span>Chrome concepts</span>
-        <span>Rocket rhythms</span>
-        <span>Jet-lagged sketches</span>
-        <span>Drive-in glow</span>
-        <span>Neon nights</span>
-        <span>Chrome concepts</span>
-        <span>Rocket rhythms</span>
+    <section class="experiments" id="experiments">
+      <div class="section-head">
+        <h2>Experiments and play</h2>
+        <p>Small explorations that keep the Googie toolkit alive.</p>
+      </div>
+      <div class="experiment-grid">
+        {#each experiments as experiment, index}
+          <article class="experiment-card" style={`--delay: ${index * 120}ms`}>
+            <span class="experiment-format">{experiment.format}</span>
+            <h3>{experiment.title}</h3>
+            <p>{experiment.desc}</p>
+          </article>
+        {/each}
       </div>
     </section>
 
-    <section class="split" id="events">
-      <div class="events">
-        <div class="section-head">
-          <h2>Tonight on the signal</h2>
-          <p>Live acts, late-night films, and dance-floor flare every week.</p>
-        </div>
-        <div class="events-list">
-          {#each events as event, index}
-            <div class="event" style={`--delay: ${index * 150}ms`}>
-              <h3>{event.title}</h3>
-              <p class="event-time">{event.time}</p>
-              <p>{event.detail}</p>
-            </div>
-          {/each}
-        </div>
+    <section class="studio" id="studio">
+      <div class="section-head">
+        <h2>Studio process</h2>
+        <p>From roadside cues to on-screen systems.</p>
       </div>
-      <div class="visit" id="visit">
-        <div class="section-head">
-          <h2>Visit the runway</h2>
-          <p>Two glow-lit hangars, both with plenty of stargazer parking.</p>
-        </div>
-        <div class="locations">
-          {#each locations as location}
-            <div class="location">
-              <h3>{location.name}</h3>
-              <p>{location.address}</p>
-              <span class="chip">{location.hours}</span>
-            </div>
-          {/each}
-        </div>
-        <button class="cta primary">Get Directions</button>
+      <div class="studio-board">
+        {#each studioSteps as step, index}
+          <article class="studio-step" style={`--delay: ${index * 140}ms`}>
+            <h3>{step.title}</h3>
+            <p>{step.desc}</p>
+          </article>
+        {/each}
       </div>
     </section>
 
-    <section class="newsletter">
-      <div>
-        <h2>Coskun Dispatch</h2>
-        <p>Get the weekly neon list: special programs, guest DJs, and retro ride-ins.</p>
+    <section class="timeline" id="timeline">
+      <div class="section-head">
+        <h2>Timeline</h2>
+        <p>A short path through the work so far.</p>
       </div>
-      <form class="newsletter-form" on:submit|preventDefault={noop}>
-        <input type="email" name="email" placeholder="you@coskun.com" aria-label="Email address" required />
-        <button class="cta small" type="submit">Join the Crew</button>
-      </form>
+      <div class="timeline-list">
+        {#each timeline as entry, index}
+          <article class="timeline-item" style={`--delay: ${index * 120}ms`}>
+            <span class="timeline-year">{entry.year}</span>
+            <div>
+              <h3>{entry.title}</h3>
+              <p>{entry.detail}</p>
+            </div>
+          </article>
+        {/each}
+      </div>
+    </section>
+
+    <section class="now" id="now">
+      <div class="now-card">
+        <div>
+          <h2>Now</h2>
+          <p>Where the studio is focused right now.</p>
+        </div>
+        <ul>
+          {#each nowItems as item}
+            <li>{item}</li>
+          {/each}
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-card">
+        <div>
+          <h2>Send a signal</h2>
+          <p>Open for collaborations that want bold, real-world inspired interfaces.</p>
+          <div class="contact-links">
+            {#each links as link}
+              <div>
+                <span>{link.label}</span>
+                <p>{link.value}</p>
+              </div>
+            {/each}
+          </div>
+        </div>
+        <form class="contact-form" on:submit|preventDefault={noop}>
+          <label>
+            Project name
+            <input type="text" name="project" placeholder="Skyline Portal" required />
+          </label>
+          <label>
+            What do you need
+            <textarea name="details" rows="3" placeholder="A Googie-inspired web experience"></textarea>
+          </label>
+          <button class="cta primary" type="submit">Send Inquiry</button>
+        </form>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Coskun © 1961 - 2024. Built on neon, nostalgia, and new ideas.</p>
+    <p>Coskun Studio. Googie energy, real-world inspiration, playful outcomes.</p>
     <div class="footer-links">
-      <a href="#programs">Programs</a>
-      <a href="#events">Events</a>
-      <a href="#visit">Visit</a>
-      <a href="#highlights">Highlights</a>
+      <a href="#work">Work</a>
+      <a href="#experiments">Experiments</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact">Contact</a>
     </div>
   </footer>
 </div>
