@@ -5,6 +5,16 @@
   import { fade, fly, scale, draw } from 'svelte/transition';
   import { flip } from 'svelte/animate';
 
+  let menuOpen = false;
+
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+  }
+
+  function closeMenu() {
+    menuOpen = false;
+  }
+
   const boardMessages = [
     'Signal open for new collaborations',
     'Design from the street, not a template',
@@ -247,21 +257,25 @@
   class="page"
   style={`--accent: ${themeChoice.accent}; --accent-2: ${themeChoice.accentTwo}; --beam: ${themeChoice.beam}; --signal: ${$signalPower}; --hue: ${hueShift}deg; --tilt: ${tilt}deg;`}
 >
+  <div class="nav-overlay" class:open={menuOpen} on:click={closeMenu} role="presentation"></div>
   <header class="site-header">
     <div class="logo" aria-label="Coskun">
       <span class="logo-main">Coskun</span>
       <span class="logo-sub">Googie Personal Studio</span>
       <span class="logo-stamp">Est. 1961</span>
     </div>
-    <nav class="nav">
-      <a href="#work">Work</a>
-      <a href="#experiments">Experiments</a>
-      <a href="#studio">Studio</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#now">Now</a>
-      <a href="#contact">Contact</a>
+    <nav class="nav" class:open={menuOpen}>
+      <a href="#work" on:click={closeMenu}>Work</a>
+      <a href="#experiments" on:click={closeMenu}>Experiments</a>
+      <a href="#studio" on:click={closeMenu}>Studio</a>
+      <a href="#timeline" on:click={closeMenu}>Timeline</a>
+      <a href="#now" on:click={closeMenu}>Now</a>
+      <a href="#contact" on:click={closeMenu}>Contact</a>
     </nav>
-    <a class="cta small" href="#contact">Signal Me</a>
+    <a class="cta small header-cta" href="#contact">Signal Me</a>
+    <button class="menu-toggle" class:open={menuOpen} on:click={toggleMenu} aria-label="Toggle menu" type="button">
+      <span></span>
+    </button>
   </header>
 
   <main>
