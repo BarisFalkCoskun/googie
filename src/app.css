@@ -399,24 +399,25 @@ section {
   filter: hue-rotate(var(--hue));
 }
 
-/* Background swooshes */
-.console-svg .swoosh {
+/* Boomerang layers */
+.console-svg .boom {
+  fill: url(#boomA);
+  stroke: var(--cream);
+  stroke-width: 4;
+  filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.25));
+}
+
+.console-svg .boom.alt {
+  fill: url(#boomB);
+  opacity: 0.9;
+}
+
+.console-svg .orbit {
   fill: none;
-  stroke-width: 40;
+  stroke: rgba(255, 241, 222, 0.65);
+  stroke-width: 3;
   stroke-linecap: round;
-  opacity: 0.6;
-}
-
-.console-svg .swoosh.back {
-  stroke: url(#boomA);
-  stroke-width: 50;
-  opacity: 0.4;
-}
-
-.console-svg .swoosh.mid {
-  stroke: url(#boomB);
-  stroke-width: 35;
-  opacity: 0.5;
+  stroke-dasharray: 8 12;
 }
 
 /* Starburst */
@@ -439,107 +440,64 @@ section {
   stroke-width: 3;
 }
 
-/* Retro car styles */
-.console-svg .car-shadow {
-  fill: rgba(0, 0, 0, 0.3);
-}
-
-.console-svg .car-body {
-  fill: url(#carGrad);
-  stroke: var(--cream);
-  stroke-width: 3;
-}
-
-.console-svg .car-windshield {
+/* Sign tower */
+.console-svg .sign-head {
   fill: var(--sky);
   stroke: var(--cream);
-  stroke-width: 2;
-  opacity: 0.9;
-}
-
-.console-svg .car-chrome {
-  fill: none;
-  stroke: var(--cream);
   stroke-width: 3;
-  stroke-linecap: round;
 }
 
-.console-svg .car-fin {
-  fill: var(--accent-2);
-  stroke: var(--cream);
-  stroke-width: 2;
-}
-
-.console-svg .headlight-glow {
-  fill: rgba(255, 200, 87, 0.5);
-  animation: headlightPulse 2s ease-in-out infinite;
-}
-
-.console-svg .headlight {
+.console-svg .sign-window {
   fill: var(--beam);
   stroke: var(--cream);
   stroke-width: 2;
-}
-
-.console-svg .taillight {
-  fill: var(--accent-2);
-  stroke: var(--cream);
-  stroke-width: 2;
-  animation: taillightPulse 1.5s ease-in-out infinite;
-}
-
-.console-svg .wheel {
-  fill: var(--ink);
-  stroke: var(--cream);
-  stroke-width: 2;
-}
-
-.console-svg .wheel-hub {
-  fill: var(--cream);
-}
-
-/* Retro car animation */
-.console-svg .retro-car {
-  animation: carFloat 4s ease-in-out infinite;
-}
-
-/* Googie sign styles */
-.console-svg .pylon {
-  fill: var(--night);
-  stroke: var(--cream);
-  stroke-width: 3;
-}
-
-.console-svg .sign-arrow {
-  fill: var(--accent);
-  stroke: var(--cream);
-  stroke-width: 3;
-}
-
-.console-svg .sign-text-bg {
-  fill: var(--night);
-  stroke: var(--cream);
-  stroke-width: 2;
-}
-
-.console-svg .sign-neon {
-  fill: var(--beam);
   animation: neonFlicker 3s ease-in-out infinite;
 }
 
-/* Road */
-.console-svg .road {
-  fill: #1a1a1a;
+.console-svg .sign-post {
+  fill: var(--night);
+  stroke: var(--cream);
+  stroke-width: 3;
+}
+
+.console-svg .sign-foot {
+  fill: var(--accent-2);
   stroke: var(--cream);
   stroke-width: 2;
 }
 
-.console-svg .road-line {
+/* Runway */
+.console-svg .runway {
+  fill: #121c20;
+  stroke: var(--cream);
+  stroke-width: 3;
+}
+
+.console-svg .runway-line {
   stroke: var(--beam);
-  stroke-width: 4;
+  stroke-width: 3;
   stroke-linecap: round;
-  stroke-dasharray: 20 15;
-  animation: roadMove 2s linear infinite;
+  stroke-dasharray: 10 12;
+  animation: roadMove 2.4s linear infinite;
+}
+
+.console-svg .runway-line.short {
+  stroke-dasharray: 6 8;
+  opacity: 0.8;
+}
+
+/* Beacon */
+.console-svg .beacon {
+  fill: var(--coral);
+  stroke: var(--cream);
+  stroke-width: 3;
+}
+
+.console-svg .beacon-ring {
+  fill: none;
+  stroke: rgba(255, 200, 87, 0.55);
+  stroke-width: 3;
+  animation: pulse 2.2s ease-in-out infinite;
 }
 
 /* Stars */
@@ -912,9 +870,9 @@ section {
   margin-left: calc(50% - 50vw);
   background: var(--night);
   color: var(--cream);
-  padding: 0;
+  padding: 0.35rem 0;
   overflow: hidden;
-  transform: skewY(-2deg);
+  transform: skewY(-1.5deg);
   position: relative;
   box-shadow:
     0 0 30px rgba(255, 200, 87, 0.3),
@@ -972,9 +930,11 @@ section {
   font-weight: 700;
   font-family: var(--font-display-solid);
   font-size: 1rem;
+  line-height: 1.4;
+  align-items: center;
   animation: marquee 20s linear infinite;
-  transform: skewY(2deg);
-  padding: 1.2rem 0;
+  transform: skewY(1.5deg);
+  padding: 1.4rem 0;
   position: relative;
   z-index: 2;
 }

@@ -338,57 +338,35 @@
               </filter>
             </defs>
 
-            <!-- Background boomerang swooshes -->
-            <path class="swoosh back" d="M20 180 Q100 80 200 100 Q300 120 380 60" />
-            <path class="swoosh mid" d="M0 220 Q120 140 200 150 Q280 160 400 100" />
+            <!-- Googie boomerangs -->
+            <path class="boom" d="M40 220 C120 120 290 110 360 160 C380 175 380 205 360 220 C270 270 120 280 55 250 C35 238 30 228 40 220 Z" />
+            <path class="boom alt" d="M60 250 C140 190 250 180 320 215 C335 222 335 238 320 247 C250 275 150 290 90 270 C70 262 62 258 60 250 Z" />
+            <path class="orbit" d="M70 150 C140 100 260 90 330 135" />
 
-            <!-- Large starburst behind car -->
-            <g class="starburst-group" transform="translate(200, 140)">
-              <circle class="starburst-glow" cx="0" cy="0" r="70" />
-              <path class="starburst-rays" d="M0 -80 L8 -25 L60 -60 L20 -15 L80 0 L20 15 L60 60 L8 25 L0 80 L-8 25 L-60 60 L-20 15 L-80 0 L-20 -15 L-60 -60 L-8 -25 Z" />
-              <circle class="starburst-center" cx="0" cy="0" r="28" />
+            <!-- Starburst -->
+            <g class="starburst-group" transform="translate(210, 120)">
+              <circle class="starburst-glow" cx="0" cy="0" r="52" />
+              <path class="starburst-rays" d="M0 -60 L10 -18 L48 -30 L16 -8 L60 0 L16 8 L48 30 L10 18 L0 60 L-10 18 L-48 30 L-16 8 L-60 0 L-16 -8 L-48 -30 L-10 -18 Z" />
+              <circle class="starburst-center" cx="0" cy="0" r="18" />
             </g>
 
-            <!-- Retro car/spaceship -->
-            <g class="retro-car" transform="translate(200, 200)">
-              <!-- Car body shadow -->
-              <ellipse class="car-shadow" cx="5" cy="55" rx="85" ry="12" />
-              <!-- Main car body -->
-              <path class="car-body" d="M-90 30 Q-95 10 -80 0 L-40 -25 Q0 -45 60 -25 L90 0 Q100 15 95 30 Q90 45 70 50 L-70 50 Q-90 45 -90 30 Z" />
-              <!-- Car windshield -->
-              <path class="car-windshield" d="M-35 -20 Q0 -38 50 -20 L40 0 Q0 -15 -25 0 Z" />
-              <!-- Car details - chrome stripe -->
-              <path class="car-chrome" d="M-85 25 Q0 35 90 25" />
-              <!-- Tail fin -->
-              <path class="car-fin" d="M-75 10 L-95 -30 L-85 -25 L-70 5 Z" />
-              <!-- Front headlight glow -->
-              <ellipse class="headlight-glow" cx="85" cy="15" rx="20" ry="15" />
-              <ellipse class="headlight" cx="85" cy="15" rx="8" ry="6" />
-              <!-- Rear lights -->
-              <circle class="taillight" cx="-80" cy="20" r="6" />
-              <!-- Wheels -->
-              <ellipse class="wheel" cx="-50" cy="48" rx="18" ry="8" />
-              <ellipse class="wheel" cx="50" cy="48" rx="18" ry="8" />
-              <ellipse class="wheel-hub" cx="-50" cy="48" rx="8" ry="4" />
-              <ellipse class="wheel-hub" cx="50" cy="48" rx="8" ry="4" />
+            <!-- Googie sign tower -->
+            <g class="sign-tower" transform="translate(305, 145)">
+              <rect class="sign-head" x="-60" y="-22" width="120" height="44" rx="22" />
+              <rect class="sign-window" x="-34" y="-8" width="68" height="16" rx="6" filter="url(#neonGlow)" />
+              <rect class="sign-post" x="-12" y="22" width="24" height="110" rx="10" />
+              <path class="sign-foot" d="M-28 132 L28 132 L18 150 L-18 150 Z" />
             </g>
 
-            <!-- Googie sign/pylon -->
-            <g class="googie-sign" transform="translate(330, 120)">
-              <!-- Pylon -->
-              <rect class="pylon" x="-12" y="60" width="24" height="120" rx="6" />
-              <!-- Sign arrow shape -->
-              <path class="sign-arrow" d="M-50 0 L40 0 L55 30 L40 60 L-50 60 L-35 30 Z" />
-              <!-- Sign text area -->
-              <rect class="sign-text-bg" x="-40" y="15" width="75" height="30" rx="6" />
-              <!-- Neon tube effect -->
-              <rect class="sign-neon" x="-35" y="22" width="65" height="16" rx="4" filter="url(#neonGlow)" />
-            </g>
+            <!-- Runway base -->
+            <path class="runway" d="M150 215 L250 215 L280 310 L120 310 Z" />
+            <line class="runway-line" x1="200" y1="236" x2="200" y2="296" />
+            <line class="runway-line short" x1="182" y1="246" x2="182" y2="286" />
+            <line class="runway-line short" x1="218" y1="246" x2="218" y2="286" />
 
-            <!-- Ground/road -->
-            <path class="road" d="M0 310 Q100 290 200 295 Q300 300 400 285 L400 360 L0 360 Z" />
-            <line class="road-line" x1="50" y1="330" x2="150" y2="325" />
-            <line class="road-line" x1="200" y1="328" x2="300" y2="323" />
+            <!-- Beacon -->
+            <circle class="beacon-ring" cx="105" cy="292" r="18" />
+            <circle class="beacon" cx="105" cy="292" r="10" />
 
             <!-- Decorative stars -->
             <circle class="star" cx="50" cy="50" r="3" />
