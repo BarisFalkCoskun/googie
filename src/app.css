@@ -301,6 +301,10 @@ section {
 
 .signal-console {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  gap: 1.6rem;
+  align-items: center;
   min-height: clamp(320px, 40vw, 520px);
   background: var(--night);
   border: 3px solid var(--cream);
@@ -321,32 +325,45 @@ section {
       rgba(255, 241, 222, 0) 12px 60px
     );
   opacity: 0.5;
+  z-index: 0;
+}
+
+.signal-console > * {
+  position: relative;
+  z-index: 1;
+}
+
+.console-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
 }
 
 .console-svg {
   width: min(460px, 100%);
   height: auto;
   display: block;
-  margin: 0 auto;
+  overflow: visible;
   filter: hue-rotate(var(--hue));
   animation: float 10s ease-in-out infinite;
-  position: relative;
-  z-index: 1;
 }
 
 .console-svg .boom {
-  fill: url(#boomA);
-  stroke: var(--cream);
-  stroke-width: 4;
+  fill: none;
+  stroke: url(#boomA);
+  stroke-width: 56;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .console-svg .boom.alt {
-  fill: url(#boomB);
+  stroke: url(#boomB);
+  stroke-width: 42;
 }
 
 .console-svg .signal {
   fill: none;
-  stroke: rgba(255, 241, 222, 0.4);
+  stroke: rgba(255, 241, 222, 0.45);
   stroke-width: 6;
   stroke-linecap: round;
   stroke-dasharray: 6 12;
@@ -363,19 +380,6 @@ section {
   stroke-width: 4;
 }
 
-.console-svg .roof,
-.console-svg .tower {
-  fill: #0f191f;
-  stroke: var(--cream);
-  stroke-width: 4;
-}
-
-.console-svg .tower-panel {
-  fill: var(--accent);
-  stroke: var(--cream);
-  stroke-width: 4;
-}
-
 .console-svg .runway {
   fill: #0f191f;
   stroke: var(--cream);
@@ -386,11 +390,29 @@ section {
   stroke: rgba(255, 241, 222, 0.85);
   stroke-width: 4;
   stroke-linecap: round;
-  stroke-dasharray: 14 16;
+  stroke-dasharray: 12 14;
 }
 
 .console-svg .runway-line.short {
   opacity: 0.6;
+}
+
+.console-svg .pylon {
+  fill: #0f191f;
+  stroke: var(--cream);
+  stroke-width: 4;
+}
+
+.console-svg .sign-panel {
+  fill: var(--accent);
+  stroke: var(--cream);
+  stroke-width: 4;
+}
+
+.console-svg .sign-window {
+  fill: #0f191f;
+  stroke: var(--cream);
+  stroke-width: 3;
 }
 
 .console-svg .beacon {
@@ -408,15 +430,13 @@ section {
 }
 
 .console-panel {
-  position: absolute;
-  right: 1.4rem;
-  bottom: 1.4rem;
-  width: min(300px, 90%);
+  width: 100%;
+  max-width: 340px;
+  justify-self: end;
   background: rgba(15, 25, 31, 0.9);
   border: 2px solid rgba(255, 241, 222, 0.6);
   border-radius: 18px;
   padding: 1rem 1.1rem;
-  z-index: 2;
   backdrop-filter: blur(6px);
 }
 
@@ -497,8 +517,8 @@ section {
 
 .console-tag {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 0.6rem;
+  left: 0.6rem;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   border: 2px solid var(--cream);
@@ -506,7 +526,6 @@ section {
   text-transform: uppercase;
   letter-spacing: 0.16em;
   background: rgba(255, 241, 222, 0.1);
-  z-index: 2;
 }
 
 .manifesto-grid {
@@ -1094,6 +1113,12 @@ section {
 
   .signal-console {
     order: -1;
+    grid-template-columns: 1fr;
+  }
+
+  .console-panel {
+    max-width: none;
+    justify-self: stretch;
   }
 }
 
@@ -1118,12 +1143,6 @@ section {
 
   .timeline-item {
     padding-left: 2.6rem;
-  }
-
-  .console-panel {
-    position: static;
-    width: 100%;
-    margin-top: 1.2rem;
   }
 
   .signal-console {

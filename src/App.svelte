@@ -288,35 +288,38 @@
         </div>
       </div>
       <div class="signal-console" aria-hidden="true">
-        <svg class="console-svg" viewBox="0 0 520 420" role="presentation" aria-hidden="true">
-          <defs>
-            <linearGradient id="boomA" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="var(--accent)" />
-              <stop offset="100%" stop-color="var(--sky)" />
-            </linearGradient>
-            <linearGradient id="boomB" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="var(--accent-2)" />
-              <stop offset="100%" stop-color="var(--beam)" />
-            </linearGradient>
-          </defs>
-          <path class="boom" d="M60 250 C150 130 330 120 450 190 C480 210 486 240 468 260 C430 310 260 330 150 310 C100 300 70 280 60 250 Z" />
-          <path class="boom alt" d="M80 300 C150 230 300 220 410 250 C440 260 440 290 410 310 C330 350 210 350 120 330 C90 320 70 310 80 300 Z" />
-          <path class="signal" in:draw={{ duration: 1600 }} d="M80 90 C200 20 320 20 440 80" />
-          <path class="signal thin" in:draw={{ duration: 1800 }} d="M100 120 C210 70 310 70 430 110" />
-          <path
-            class="starburst"
-            in:draw={{ duration: 1200 }}
-            d="M260 40 L272 70 L304 60 L292 90 L324 98 L292 110 L304 140 L272 130 L260 160 L248 130 L216 140 L228 110 L196 98 L228 90 L216 60 L248 70 Z"
-          />
-          <rect class="roof" x="130" y="140" width="220" height="40" rx="14" />
-          <rect class="tower" x="360" y="70" width="60" height="180" rx="18" />
-          <rect class="tower-panel" x="334" y="60" width="112" height="48" rx="16" />
-          <rect class="runway" x="190" y="210" width="150" height="190" rx="24" />
-          <line class="runway-line" x1="265" y1="230" x2="265" y2="380" />
-          <line class="runway-line short" x1="245" y1="250" x2="245" y2="320" />
-          <circle class="beacon" cx="120" cy="360" r="20" />
-          <circle class="beacon glow" cx="120" cy="360" r="36" />
-        </svg>
+        <div class="console-visual">
+          <svg class="console-svg" viewBox="0 0 480 420" role="presentation" aria-hidden="true">
+            <defs>
+              <linearGradient id="boomA" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="var(--accent)" />
+                <stop offset="100%" stop-color="var(--sky)" />
+              </linearGradient>
+              <linearGradient id="boomB" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="var(--accent-2)" />
+                <stop offset="100%" stop-color="var(--beam)" />
+              </linearGradient>
+            </defs>
+            <path class="signal" in:draw={{ duration: 1400 }} d="M70 110 C200 20 300 20 430 90" />
+            <path class="signal thin" in:draw={{ duration: 1600 }} d="M90 140 C210 70 300 70 410 120" />
+            <path
+              class="starburst"
+              in:draw={{ duration: 1200 }}
+              d="M240 40 L254 70 L288 60 L272 92 L306 100 L272 112 L288 144 L254 132 L240 166 L226 132 L192 144 L208 112 L174 100 L208 92 L192 60 L226 70 Z"
+            />
+            <path class="boom" d="M60 250 C160 120 320 120 420 210" />
+            <path class="boom alt" d="M80 295 C180 220 300 220 400 260" />
+            <polygon class="runway" points="200 260 300 260 340 390 160 390" />
+            <line class="runway-line" x1="250" y1="275" x2="250" y2="380" />
+            <line class="runway-line short" x1="230" y1="290" x2="230" y2="340" />
+            <rect class="pylon" x="318" y="140" width="46" height="170" rx="18" />
+            <rect class="sign-panel" x="276" y="100" width="130" height="56" rx="18" />
+            <rect class="sign-window" x="296" y="118" width="90" height="18" rx="9" />
+            <circle class="beacon glow" cx="130" cy="360" r="30" />
+            <circle class="beacon" cx="130" cy="360" r="16" />
+          </svg>
+          <div class="console-tag">Runway Lab</div>
+        </div>
         <div class="console-panel">
           <div class="panel-top">
             <span>Signal Board</span>
@@ -353,7 +356,6 @@
             </div>
           </div>
         </div>
-        <div class="console-tag">Runway Lab</div>
       </div>
     </section>
 
