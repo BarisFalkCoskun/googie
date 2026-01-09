@@ -527,16 +527,45 @@
           </div>
         </div>
         <div class="mixer-display" style="filter: hue-rotate(var(--hue));">
-          <div class="display-sign">
-            <span>Coskun Signal</span>
+          <div class="display-header">
+            <span class="display-title">Signal Preview</span>
+            <span class="display-status">Live</span>
           </div>
-          <div class="display-beam"></div>
-          <div class="display-badge">Online</div>
-          <div class="display-grid">
-            <div class="display-node"></div>
-            <div class="display-node"></div>
-            <div class="display-node"></div>
-            <div class="display-node"></div>
+          <div class="display-main">
+            <div class="display-beam"></div>
+            <div class="display-decoration">
+              <div class="deco-line"></div>
+              <div class="deco-line"></div>
+              <div class="deco-line"></div>
+              <div class="deco-circle"></div>
+              <div class="deco-circle"></div>
+            </div>
+            <div class="display-sign">
+              <span>Coskun Signal</span>
+            </div>
+          </div>
+          <div class="display-footer">
+            <div class="display-meters">
+              <div class="mini-meter">
+                <div class="mini-meter-bar">
+                  <div class="mini-meter-fill" style={`height: ${$signalPower}%`}></div>
+                </div>
+                <span class="mini-meter-label">Pwr</span>
+              </div>
+              <div class="mini-meter">
+                <div class="mini-meter-bar">
+                  <div class="mini-meter-fill alt" style={`height: ${huePercent}%`}></div>
+                </div>
+                <span class="mini-meter-label">Hue</span>
+              </div>
+              <div class="mini-meter">
+                <div class="mini-meter-bar">
+                  <div class="mini-meter-fill warm" style={`height: ${tiltPercent}%`}></div>
+                </div>
+                <span class="mini-meter-label">Tlt</span>
+              </div>
+            </div>
+            <div class="display-badge">Online</div>
           </div>
         </div>
       </div>
