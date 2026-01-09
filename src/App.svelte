@@ -303,7 +303,7 @@
       </div>
       <div class="signal-console" aria-hidden="true">
         <div class="console-visual">
-          <svg class="console-svg" viewBox="0 0 480 420" role="presentation" aria-hidden="true">
+          <svg class="console-svg" viewBox="0 0 400 360" role="presentation" aria-hidden="true">
             <defs>
               <linearGradient id="boomA" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stop-color="var(--accent)" />
@@ -313,61 +313,153 @@
                 <stop offset="0%" stop-color="var(--accent-2)" />
                 <stop offset="100%" stop-color="var(--beam)" />
               </linearGradient>
+              <linearGradient id="carGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="var(--accent-2)" />
+                <stop offset="50%" stop-color="var(--coral)" />
+                <stop offset="100%" stop-color="var(--beam)" />
+              </linearGradient>
+              <linearGradient id="signGlow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--accent)" />
+                <stop offset="100%" stop-color="var(--night)" />
+              </linearGradient>
+              <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="8" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
             </defs>
-            <path class="signal" in:draw={{ duration: 1400 }} d="M70 110 C200 20 300 20 430 90" />
-            <path class="signal thin" in:draw={{ duration: 1600 }} d="M90 140 C210 70 300 70 410 120" />
-            <path
-              class="starburst"
-              in:draw={{ duration: 1200 }}
-              d="M240 40 L254 70 L288 60 L272 92 L306 100 L272 112 L288 144 L254 132 L240 166 L226 132 L192 144 L208 112 L174 100 L208 92 L192 60 L226 70 Z"
-            />
-            <path class="boom" d="M60 250 C160 120 320 120 420 210" />
-            <path class="boom alt" d="M80 295 C180 220 300 220 400 260" />
-            <polygon class="runway" points="200 260 300 260 340 390 160 390" />
-            <line class="runway-line" x1="250" y1="275" x2="250" y2="380" />
-            <line class="runway-line short" x1="230" y1="290" x2="230" y2="340" />
-            <rect class="pylon" x="318" y="140" width="46" height="170" rx="18" />
-            <rect class="sign-panel" x="276" y="100" width="130" height="56" rx="18" />
-            <rect class="sign-window" x="296" y="118" width="90" height="18" rx="9" />
-            <circle class="beacon glow" cx="130" cy="360" r="30" />
-            <circle class="beacon" cx="130" cy="360" r="16" />
+
+            <!-- Background boomerang swooshes -->
+            <path class="swoosh back" d="M20 180 Q100 80 200 100 Q300 120 380 60" />
+            <path class="swoosh mid" d="M0 220 Q120 140 200 150 Q280 160 400 100" />
+
+            <!-- Large starburst behind car -->
+            <g class="starburst-group" transform="translate(200, 140)">
+              <circle class="starburst-glow" cx="0" cy="0" r="70" />
+              <path class="starburst-rays" d="M0 -80 L8 -25 L60 -60 L20 -15 L80 0 L20 15 L60 60 L8 25 L0 80 L-8 25 L-60 60 L-20 15 L-80 0 L-20 -15 L-60 -60 L-8 -25 Z" />
+              <circle class="starburst-center" cx="0" cy="0" r="28" />
+            </g>
+
+            <!-- Retro car/spaceship -->
+            <g class="retro-car" transform="translate(200, 200)">
+              <!-- Car body shadow -->
+              <ellipse class="car-shadow" cx="5" cy="55" rx="85" ry="12" />
+              <!-- Main car body -->
+              <path class="car-body" d="M-90 30 Q-95 10 -80 0 L-40 -25 Q0 -45 60 -25 L90 0 Q100 15 95 30 Q90 45 70 50 L-70 50 Q-90 45 -90 30 Z" />
+              <!-- Car windshield -->
+              <path class="car-windshield" d="M-35 -20 Q0 -38 50 -20 L40 0 Q0 -15 -25 0 Z" />
+              <!-- Car details - chrome stripe -->
+              <path class="car-chrome" d="M-85 25 Q0 35 90 25" />
+              <!-- Tail fin -->
+              <path class="car-fin" d="M-75 10 L-95 -30 L-85 -25 L-70 5 Z" />
+              <!-- Front headlight glow -->
+              <ellipse class="headlight-glow" cx="85" cy="15" rx="20" ry="15" />
+              <ellipse class="headlight" cx="85" cy="15" rx="8" ry="6" />
+              <!-- Rear lights -->
+              <circle class="taillight" cx="-80" cy="20" r="6" />
+              <!-- Wheels -->
+              <ellipse class="wheel" cx="-50" cy="48" rx="18" ry="8" />
+              <ellipse class="wheel" cx="50" cy="48" rx="18" ry="8" />
+              <ellipse class="wheel-hub" cx="-50" cy="48" rx="8" ry="4" />
+              <ellipse class="wheel-hub" cx="50" cy="48" rx="8" ry="4" />
+            </g>
+
+            <!-- Googie sign/pylon -->
+            <g class="googie-sign" transform="translate(330, 120)">
+              <!-- Pylon -->
+              <rect class="pylon" x="-12" y="60" width="24" height="120" rx="6" />
+              <!-- Sign arrow shape -->
+              <path class="sign-arrow" d="M-50 0 L40 0 L55 30 L40 60 L-50 60 L-35 30 Z" />
+              <!-- Sign text area -->
+              <rect class="sign-text-bg" x="-40" y="15" width="75" height="30" rx="6" />
+              <!-- Neon tube effect -->
+              <rect class="sign-neon" x="-35" y="22" width="65" height="16" rx="4" filter="url(#neonGlow)" />
+            </g>
+
+            <!-- Ground/road -->
+            <path class="road" d="M0 310 Q100 290 200 295 Q300 300 400 285 L400 360 L0 360 Z" />
+            <line class="road-line" x1="50" y1="330" x2="150" y2="325" />
+            <line class="road-line" x1="200" y1="328" x2="300" y2="323" />
+
+            <!-- Decorative stars -->
+            <circle class="star" cx="50" cy="50" r="3" />
+            <circle class="star" cx="120" cy="30" r="2" />
+            <circle class="star" cx="350" cy="45" r="2.5" />
+            <circle class="star" cx="80" cy="90" r="2" />
           </svg>
-          <div class="console-tag">Runway Lab</div>
+          <div class="console-label">
+            <span class="label-text">Signal Lab</span>
+            <span class="label-dot"></span>
+          </div>
         </div>
         <div class="console-panel">
-          <div class="panel-top">
-            <span>Signal Board</span>
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="panel-icon"></span>
+              <span>Control Deck</span>
+            </div>
             <span class="panel-mode">{themeChoice.name}</span>
           </div>
           <div class="panel-screen">
+            <div class="screen-scanline"></div>
             {#key boardMessage}
-              <div class="panel-message" in:fly={{ y: 10, duration: 220 }} out:fade>
+              <div class="panel-message" in:fly={{ y: 12, duration: 280 }} out:fade={{ duration: 150 }}>
                 {boardMessage}
               </div>
             {/key}
+            <div class="screen-indicator">
+              {#each boardMessages as _, i}
+                <span class="indicator-dot" class:active={i === boardIndex}></span>
+              {/each}
+            </div>
           </div>
           <div class="panel-meters">
             <div class="meter">
-              <span>Power</span>
+              <span class="meter-label">PWR</span>
               <div class="meter-track">
                 <span class="meter-fill" style={`width: ${$signalPower}%`}></span>
+                <span class="meter-glow" style={`width: ${$signalPower}%`}></span>
               </div>
-              <span class="meter-value">{Math.round($signalPower)}%</span>
+              <span class="meter-value">{Math.round($signalPower)}</span>
             </div>
             <div class="meter">
-              <span>Hue</span>
+              <span class="meter-label">HUE</span>
               <div class="meter-track">
                 <span class="meter-fill alt" style={`width: ${huePercent}%`}></span>
+                <span class="meter-glow alt" style={`width: ${huePercent}%`}></span>
               </div>
-              <span class="meter-value">{huePercent}%</span>
+              <span class="meter-value">{huePercent}</span>
             </div>
             <div class="meter">
-              <span>Tilt</span>
+              <span class="meter-label">TLT</span>
               <div class="meter-track">
                 <span class="meter-fill warm" style={`width: ${tiltPercent}%`}></span>
+                <span class="meter-glow warm" style={`width: ${tiltPercent}%`}></span>
               </div>
-              <span class="meter-value">{tiltPercent}%</span>
+              <span class="meter-value">{tiltPercent}</span>
             </div>
+          </div>
+          <div class="panel-buttons">
+            {#each themes as theme}
+              <button
+                class="panel-btn"
+                class:active={themeChoice.name === theme.name}
+                on:click={() => (themeChoice = theme)}
+                type="button"
+                style={`--btn-color: ${theme.accent}`}
+              >
+                {theme.name}
+              </button>
+            {/each}
           </div>
         </div>
       </div>
@@ -397,7 +489,10 @@
         <span>Design from the street</span>
         <span>Motion shows the way</span>
         <span>Websites can be physical</span>
+        <span>Neon is a navigation tool</span>
+        <span>Geometry beats grids</span>
       </div>
+      <div class="strip-border-bottom"></div>
     </section>
 
     <section class="mixer" id="studio">
