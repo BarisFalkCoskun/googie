@@ -1,4 +1,60 @@
 <script>
+  import { onMount } from 'svelte';
+  import { tweened } from 'svelte/motion';
+  import { cubicOut } from 'svelte/easing';
+  import { fade, fly, scale, draw } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
+
+  const boardMessages = [
+    'Signal open for new collaborations',
+    'Design from the street, not a template',
+    'Googie geometry + modern UX',
+    'Motion cues beat empty whitespace',
+    'Color is a wayfinding system'
+  ];
+
+  const themes = [
+    {
+      name: 'Neon',
+      accent: '#32c6c2',
+      accentTwo: '#ff6b57',
+      beam: '#ffc857'
+    },
+    {
+      name: 'Desert',
+      accent: '#ffc857',
+      accentTwo: '#ff8f62',
+      beam: '#32c6c2'
+    },
+    {
+      name: 'Noir',
+      accent: '#3dd9b3',
+      accentTwo: '#f7c66f',
+      beam: '#c7d7e1'
+    }
+  ];
+
+  let themeChoice = themes[0];
+  let boardIndex = 0;
+  let boardMessage = boardMessages[0];
+
+  let powerControl = 72;
+  let hueShift = 0;
+  let tilt = -6;
+
+  const signalPower = tweened(powerControl, { duration: 500, easing: cubicOut });
+  $: signalPower.set(powerControl);
+
+  const stats = [
+    { label: 'Visual Systems', target: 18, suffix: '+' },
+    { label: 'Motion Toolkits', target: 12, suffix: '' },
+    { label: 'Field Drives', target: 24, suffix: '' }
+  ];
+
+  const statStores = stats.map(() => tweened(0, { duration: 1200, easing: cubicOut }));
+  let statValues = stats.map(() => 0);
+  let statUnsubs = [];
+
   const principles = [
     {
       title: 'Borrow the real world',
@@ -27,25 +83,49 @@
       name: 'Signal Atlas',
       role: 'Product design',
       desc: 'A map of night routes that turns city data into glowing wayfinding.',
-      tags: ['Web', 'Mapping']
+      tags: ['Web', 'Mapping'],
+      type: 'Product',
+      year: 2024
     },
     {
       name: 'Orbit Planner',
       role: 'Interaction design',
       desc: 'A scheduling tool for studios that treats time like a runway.',
-      tags: ['Systems', 'SaaS']
+      tags: ['Systems', 'SaaS'],
+      type: 'Systems',
+      year: 2023
     },
     {
       name: 'Neon Specimen',
       role: 'Visual system',
       desc: 'A type exploration that mixes signage, tickets, and hand-lettering.',
-      tags: ['Identity', 'Type']
+      tags: ['Identity', 'Type'],
+      type: 'Identity',
+      year: 2022
     },
     {
       name: 'Drive-In Toolkit',
       role: 'Creative code',
       desc: 'Reusable motion patterns inspired by roadside signage and travel boards.',
-      tags: ['Motion', 'UI']
+      tags: ['Motion', 'UI'],
+      type: 'Motion',
+      year: 2024
+    },
+    {
+      name: 'Panorama Kiosk',
+      role: 'UX strategy',
+      desc: 'A retail touch screen flow that mimics airport terminal cues.',
+      tags: ['UX', 'Hardware'],
+      type: 'Product',
+      year: 2021
+    },
+    {
+      name: 'Starburst Identity',
+      role: 'Brand system',
+      desc: 'A modular identity built around burst geometry and neon contrast.',
+      tags: ['Identity', 'Brand'],
+      type: 'Identity',
+      year: 2023
     }
   ];
 
@@ -53,17 +133,20 @@
     {
       title: 'Starburst Generator',
       format: 'SVG tool',
-      desc: 'Builds retro bursts with adjustable rays and glow layers.'
+      desc: 'Builds retro bursts with adjustable rays and glow layers.',
+      detail: 'Uses dynamic SVG math to keep angles crisp at any size.'
     },
     {
       title: 'Ticket Stub UI',
       format: 'Component study',
-      desc: 'Explores clipped corners, embossing, and ink-stamp textures.'
+      desc: 'Explores clipped corners, embossing, and ink-stamp textures.',
+      detail: 'Reusable tokens for cards, forms, and micro panels.'
     },
     {
       title: 'Runway Lightline',
       format: 'Motion loop',
-      desc: 'A looping guide rail animation for navigation cues.'
+      desc: 'A looping guide rail animation for navigation cues.',
+      detail: 'Tunable speed, density, and glow intensity.'
     }
   ];
 
@@ -117,10 +200,53 @@
     { label: 'Github', value: 'github.com/coskun' }
   ];
 
+  const filters = ['All', 'Product', 'Identity', 'Motion', 'Systems'];
+  const sortModes = ['Newest', 'Alphabet'];
+
+  let activeFilter = 'All';
+  let sortMode = 'Newest';
+  let openExperiment = experiments[0].title;
+
+  $: filteredProjects =
+    activeFilter === 'All'
+      ? projects
+      : projects.filter((project) => project.type === activeFilter);
+
+  $: sortedProjects = [...filteredProjects].sort((a, b) =>
+    sortMode === 'Newest' ? b.year - a.year : a.name.localeCompare(b.name)
+  );
+
+  $: huePercent = Math.round(((hueShift + 30) / 60) * 100);
+  $: tiltPercent = Math.round(((tilt + 15) / 30) * 100);
+
   const noop = () => {};
+
+  onMount(() => {
+    const id = setInterval(() => {
+      boardIndex = (boardIndex + 1) % boardMessages.length;
+      boardMessage = boardMessages[boardIndex];
+    }, 2400);
+
+    statUnsubs = statStores.map((store, index) =>
+      store.subscribe((value) => {
+        statValues[index] = value;
+        statValues = [...statValues];
+      })
+    );
+
+    stats.forEach((stat, index) => statStores[index].set(stat.target));
+
+    return () => {
+      clearInterval(id);
+      statUnsubs.forEach((unsub) => unsub());
+    };
+  });
 </script>
 
-<div class="page">
+<div
+  class="page"
+  style={`--accent: ${themeChoice.accent}; --accent-2: ${themeChoice.accentTwo}; --beam: ${themeChoice.beam}; --signal: ${$signalPower}; --hue: ${hueShift}deg; --tilt: ${tilt}deg;`}
+>
   <header class="site-header">
     <div class="logo" aria-label="Coskun">
       <span class="logo-main">Coskun</span>
@@ -153,59 +279,87 @@
           <a class="cta ghost" href="#contact">Say Hello</a>
         </div>
         <div class="hero-stats">
-          <div>
-            <span class="stat-number">15+</span>
-            <span class="stat-label">Visual Systems</span>
-          </div>
-          <div>
-            <span class="stat-number">8</span>
-            <span class="stat-label">Motion Toolkits</span>
-          </div>
-          <div>
-            <span class="stat-number">24</span>
-            <span class="stat-label">City Drives</span>
-          </div>
+          {#each stats as stat, index}
+            <div>
+              <span class="stat-number">{Math.round(statValues[index])}{stat.suffix}</span>
+              <span class="stat-label">{stat.label}</span>
+            </div>
+          {/each}
         </div>
       </div>
-      <div class="hero-collage" aria-hidden="true">
-        <svg class="collage" viewBox="0 0 520 520" role="presentation" aria-hidden="true">
+      <div class="signal-console" aria-hidden="true">
+        <svg class="console-svg" viewBox="0 0 520 420" role="presentation" aria-hidden="true">
           <defs>
             <linearGradient id="boomA" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#39d0c3" />
-              <stop offset="100%" stop-color="#c6f2ff" />
+              <stop offset="0%" stop-color="var(--accent)" />
+              <stop offset="100%" stop-color="var(--sky)" />
             </linearGradient>
             <linearGradient id="boomB" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#ff7b57" />
-              <stop offset="100%" stop-color="#ffc857" />
+              <stop offset="0%" stop-color="var(--accent-2)" />
+              <stop offset="100%" stop-color="var(--beam)" />
             </linearGradient>
           </defs>
-          <path class="boom" d="M70 300 C150 190 330 170 440 220 C470 238 476 265 458 285 C420 335 260 350 160 330 C110 320 80 310 70 300 Z" />
-          <path class="boom alt" d="M90 360 C160 290 300 280 400 310 C430 320 430 350 400 370 C330 410 210 410 120 390 C90 380 80 370 90 360 Z" />
-          <polygon class="roof" points="140 230 340 220 300 170 110 180" />
-          <rect class="tower" x="350" y="90" width="60" height="180" rx="16" />
-          <rect class="tower-panel" x="332" y="70" width="96" height="52" rx="14" />
-          <polygon class="starburst" points="260,60 272,90 302,78 290,106 320,110 290,124 302,152 272,140 260,170 248,140 218,152 230,124 200,110 230,106 218,78 248,90" />
-          <path class="signal" d="M90 120 C200 40 320 40 430 110" />
-          <path class="signal thin" d="M100 150 C210 90 310 90 420 140" />
-          <rect class="runway" x="180" y="250" width="160" height="200" rx="20" />
-          <line class="runway-line" x1="260" y1="270" x2="260" y2="430" />
-          <line class="runway-line short" x1="240" y1="290" x2="240" y2="360" />
-          <circle class="beacon" cx="130" cy="420" r="20" />
-          <circle class="beacon glow" cx="130" cy="420" r="36" />
+          <path class="boom" d="M60 250 C150 130 330 120 450 190 C480 210 486 240 468 260 C430 310 260 330 150 310 C100 300 70 280 60 250 Z" />
+          <path class="boom alt" d="M80 300 C150 230 300 220 410 250 C440 260 440 290 410 310 C330 350 210 350 120 330 C90 320 70 310 80 300 Z" />
+          <path class="signal" in:draw={{ duration: 1600 }} d="M80 90 C200 20 320 20 440 80" />
+          <path class="signal thin" in:draw={{ duration: 1800 }} d="M100 120 C210 70 310 70 430 110" />
+          <path
+            class="starburst"
+            in:draw={{ duration: 1200 }}
+            d="M260 40 L272 70 L304 60 L292 90 L324 98 L292 110 L304 140 L272 130 L260 160 L248 130 L216 140 L228 110 L196 98 L228 90 L216 60 L248 70 Z"
+          />
+          <rect class="roof" x="130" y="140" width="220" height="40" rx="14" />
+          <rect class="tower" x="360" y="70" width="60" height="180" rx="18" />
+          <rect class="tower-panel" x="334" y="60" width="112" height="48" rx="16" />
+          <rect class="runway" x="190" y="210" width="150" height="190" rx="24" />
+          <line class="runway-line" x1="265" y1="230" x2="265" y2="380" />
+          <line class="runway-line short" x1="245" y1="250" x2="245" y2="320" />
+          <circle class="beacon" cx="120" cy="360" r="20" />
+          <circle class="beacon glow" cx="120" cy="360" r="36" />
         </svg>
-        <div class="hero-sticker">Signal: Online</div>
-        <div class="hero-ticket">
-          <p class="ticket-title">Coskun Pass</p>
-          <p class="ticket-code">GOOG-1961</p>
-          <p class="ticket-copy">UI systems + motion studies</p>
-          <span class="ticket-price">Open 2025</span>
+        <div class="console-panel">
+          <div class="panel-top">
+            <span>Signal Board</span>
+            <span class="panel-mode">{themeChoice.name}</span>
+          </div>
+          <div class="panel-screen">
+            {#key boardMessage}
+              <div class="panel-message" in:fly={{ y: 10, duration: 220 }} out:fade>
+                {boardMessage}
+              </div>
+            {/key}
+          </div>
+          <div class="panel-meters">
+            <div class="meter">
+              <span>Power</span>
+              <div class="meter-track">
+                <span class="meter-fill" style={`width: ${$signalPower}%`}></span>
+              </div>
+              <span class="meter-value">{Math.round($signalPower)}%</span>
+            </div>
+            <div class="meter">
+              <span>Hue</span>
+              <div class="meter-track">
+                <span class="meter-fill alt" style={`width: ${huePercent}%`}></span>
+              </div>
+              <span class="meter-value">{huePercent}%</span>
+            </div>
+            <div class="meter">
+              <span>Tilt</span>
+              <div class="meter-track">
+                <span class="meter-fill warm" style={`width: ${tiltPercent}%`}></span>
+              </div>
+              <span class="meter-value">{tiltPercent}%</span>
+            </div>
+          </div>
         </div>
+        <div class="console-tag">Runway Lab</div>
       </div>
     </section>
 
     <section class="manifesto" id="manifesto">
       <div class="section-head">
-        <h2>Why Googie, why now</h2>
+        <h2>Googie DNA</h2>
         <p>A reminder that the web can feel like a place, not just a layout.</p>
       </div>
       <div class="manifesto-grid">
@@ -230,19 +384,95 @@
       </div>
     </section>
 
+    <section class="mixer" id="studio">
+      <div class="section-head">
+        <h2>Signal mixer</h2>
+        <p>Live controls to prove that interfaces can feel engineered and playful.</p>
+      </div>
+      <div class="mixer-grid">
+        <div class="mixer-controls">
+          <label>
+            Signal power
+            <input type="range" min="30" max="100" bind:value={powerControl} />
+          </label>
+          <label>
+            Hue shift
+            <input type="range" min="-30" max="30" bind:value={hueShift} />
+          </label>
+          <label>
+            Sign tilt
+            <input type="range" min="-15" max="15" bind:value={tilt} />
+          </label>
+          <div class="theme-row">
+            {#each themes as theme}
+              <button
+                class:active={themeChoice.name === theme.name}
+                on:click={() => (themeChoice = theme)}
+                type="button"
+              >
+                {theme.name}
+              </button>
+            {/each}
+          </div>
+        </div>
+        <div class="mixer-display" style="filter: hue-rotate(var(--hue));">
+          <div class="display-sign">
+            <span>Coskun Signal</span>
+          </div>
+          <div class="display-beam"></div>
+          <div class="display-badge">Online</div>
+          <div class="display-grid">
+            <div class="display-node"></div>
+            <div class="display-node"></div>
+            <div class="display-node"></div>
+            <div class="display-node"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="work" id="work">
       <div class="section-head">
         <h2>Selected work</h2>
         <p>Product and identity systems that borrow from signage, travel, and architecture.</p>
       </div>
+      <div class="work-controls">
+        <div class="filter-row">
+          {#each filters as filter}
+            <button
+              class:active={activeFilter === filter}
+              on:click={() => (activeFilter = filter)}
+              type="button"
+            >
+              {filter}
+            </button>
+          {/each}
+        </div>
+        <div class="sort-row">
+          {#each sortModes as mode}
+            <button class:active={sortMode === mode} on:click={() => (sortMode = mode)} type="button">
+              {mode}
+            </button>
+          {/each}
+        </div>
+      </div>
       <div class="work-grid">
-        {#each projects as project, index}
-          <article class="work-card" style={`--delay: ${index * 110}ms`}>
+        {#each sortedProjects as project (project.name)}
+          <article
+            class="work-card"
+            transition:scale={{ duration: 220 }}
+            animate:flip
+            style={`--delay: ${project.year - 2019}ms`}
+          >
             <div class="work-header">
               <h3>{project.name}</h3>
               <span class="work-role">{project.role}</span>
             </div>
             <p>{project.desc}</p>
+            <div class="work-meta">
+              <span>{project.type}</span>
+              <span>{project.year}</span>
+            </div>
             <div class="work-tags">
               {#each project.tags as tag}
                 <span>{tag}</span>
@@ -259,24 +489,34 @@
         <p>Small explorations that keep the Googie toolkit alive.</p>
       </div>
       <div class="experiment-grid">
-        {#each experiments as experiment, index}
-          <article class="experiment-card" style={`--delay: ${index * 120}ms`}>
+        {#each experiments as experiment}
+          <article
+            class={`experiment-card ${openExperiment === experiment.title ? 'open' : ''}`}
+            on:click={() =>
+              (openExperiment = openExperiment === experiment.title ? '' : experiment.title)}
+            role="button"
+            tabindex="0"
+            on:keydown={(event) => event.key === 'Enter' && (openExperiment = experiment.title)}
+          >
             <span class="experiment-format">{experiment.format}</span>
             <h3>{experiment.title}</h3>
             <p>{experiment.desc}</p>
+            {#if openExperiment === experiment.title}
+              <p class="experiment-detail" transition:fade>{experiment.detail}</p>
+            {/if}
           </article>
         {/each}
       </div>
     </section>
 
-    <section class="studio" id="studio">
+    <section class="studio" aria-label="Studio process">
       <div class="section-head">
         <h2>Studio process</h2>
         <p>From roadside cues to on-screen systems.</p>
       </div>
       <div class="studio-board">
         {#each studioSteps as step, index}
-          <article class="studio-step" style={`--delay: ${index * 140}ms`}>
+          <article class="studio-step" in:fly={{ y: 16, duration: 240 }} style={`--delay: ${index * 120}ms`}>
             <h3>{step.title}</h3>
             <p>{step.desc}</p>
           </article>
