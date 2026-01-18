@@ -338,35 +338,32 @@
               </filter>
             </defs>
 
-            <!-- Googie boomerangs -->
-            <path class="boom" d="M40 220 C120 120 290 110 360 160 C380 175 380 205 360 220 C270 270 120 280 55 250 C35 238 30 228 40 220 Z" />
-            <path class="boom alt" d="M60 250 C140 190 250 180 320 215 C335 222 335 238 320 247 C250 275 150 290 90 270 C70 262 62 258 60 250 Z" />
-            <path class="orbit" d="M70 150 C140 100 260 90 330 135" />
+            <!-- Neon swoops -->
+            <path class="swoop" d="M50 210 C140 120 270 130 350 180" />
+            <path class="swoop alt" d="M70 235 C165 180 250 185 320 210" />
+            <path class="orbit" d="M90 120 C170 70 290 80 340 120" />
 
             <!-- Starburst -->
-            <g class="starburst-group" transform="translate(210, 120)">
+            <g class="starburst-group" transform="translate(170, 115)">
               <circle class="starburst-glow" cx="0" cy="0" r="52" />
               <path class="starburst-rays" d="M0 -60 L10 -18 L48 -30 L16 -8 L60 0 L16 8 L48 30 L10 18 L0 60 L-10 18 L-48 30 L-16 8 L-60 0 L-16 -8 L-48 -30 L-10 -18 Z" />
               <circle class="starburst-center" cx="0" cy="0" r="18" />
             </g>
 
-            <!-- Googie sign tower -->
-            <g class="sign-tower" transform="translate(305, 145)">
-              <rect class="sign-head" x="-60" y="-22" width="120" height="44" rx="22" />
-              <rect class="sign-window" x="-34" y="-8" width="68" height="16" rx="6" filter="url(#neonGlow)" />
-              <rect class="sign-post" x="-12" y="22" width="24" height="110" rx="10" />
-              <path class="sign-foot" d="M-28 132 L28 132 L18 150 L-18 150 Z" />
-            </g>
+            <!-- Googie sign board -->
+            <path class="board" d="M85 185 L255 155 L275 220 L105 250 Z" />
+            <path class="board-inner" d="M105 193 L240 168 L255 210 L120 232 Z" />
+            <line class="board-line" x1="122" y1="205" x2="228" y2="186" />
+            <line class="board-line" x1="128" y1="220" x2="234" y2="201" />
+            <line class="board-line" x1="134" y1="234" x2="240" y2="216" />
 
-            <!-- Runway base -->
-            <path class="runway" d="M150 215 L250 215 L280 310 L120 310 Z" />
-            <line class="runway-line" x1="200" y1="236" x2="200" y2="296" />
-            <line class="runway-line short" x1="182" y1="246" x2="182" y2="286" />
-            <line class="runway-line short" x1="218" y1="246" x2="218" y2="286" />
+            <!-- Mast -->
+            <rect class="mast" x="280" y="195" width="22" height="118" rx="10" />
+            <path class="mast-base" d="M266 314 L316 314 L304 334 L278 334 Z" />
 
             <!-- Beacon -->
-            <circle class="beacon-ring" cx="105" cy="292" r="18" />
-            <circle class="beacon" cx="105" cy="292" r="10" />
+            <circle class="beacon-ring" cx="110" cy="262" r="18" />
+            <circle class="beacon" cx="110" cy="262" r="10" />
 
             <!-- Decorative stars -->
             <circle class="star" cx="50" cy="50" r="3" />
@@ -461,14 +458,16 @@
 
     <section class="signal-strip" aria-label="Coskun signal">
       <div class="strip-track">
-        <span>Websites can be physical</span>
-        <span>Neon is a navigation tool</span>
-        <span>Geometry beats grids</span>
-        <span>Design from the street</span>
-        <span>Motion shows the way</span>
-        <span>Websites can be physical</span>
-        <span>Neon is a navigation tool</span>
-        <span>Geometry beats grids</span>
+        <div class="strip-inner">
+          <span>Websites can be physical</span>
+          <span>Neon is a navigation tool</span>
+          <span>Geometry beats grids</span>
+          <span>Design from the street</span>
+          <span>Motion shows the way</span>
+          <span>Websites can be physical</span>
+          <span>Neon is a navigation tool</span>
+          <span>Geometry beats grids</span>
+        </div>
       </div>
       <div class="strip-border-bottom"></div>
     </section>
